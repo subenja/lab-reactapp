@@ -4,10 +4,9 @@ import styles from './NewTodo.module.css'
 
 function NewTodo() {
     return (
-        <div class="Root">
-            new todo box
-            <input class="Input"></input>
-            <button class="button">Add</button>
+        <div className={styles.Root}>
+            <input className={styles.Input} placeholder="Enter Todo" />
+            <div className={styles.Button}>ADD</div>
         </div>
     );
 }

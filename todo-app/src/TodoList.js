@@ -7,8 +7,9 @@ import Todo from './components/Todo.js'
 class TodoList extends React.Component {
   render = () => {
     return (
-      <div>Todo
+      <div className={styles.Root}>
         <NewTodo />
+        <Todo />
         <Todo />
       </div>
     ) 

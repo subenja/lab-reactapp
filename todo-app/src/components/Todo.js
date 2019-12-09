@@ -4,12 +4,10 @@ import styles from './Todo.module.css'
 
 function Todo() {
     return (
-        <div class="root">
-            Todo items will be listed here
-            <div class="Tick"></div>
-            <div class="Text">Todo name</div>
-            <button class="Delete">x</button>
-            
+        <div className={styles.Root}>
+            <span clasName={styles.Tick} />
+            <div className={styles.Text}>Todo name</div>
+            <span className={styles.Delete}>x</span>
         </div>
     )
 }
