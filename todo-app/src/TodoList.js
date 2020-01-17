@@ -3,15 +3,45 @@ import React from 'react'
 import styles from './TodoList.module.css'
 import NewTodo from './components/NewTodo.js'
 import Todo from './components/Todo.js'
+ 
+const API = 'http://localhost:3001/todos'
 
 class TodoList extends React.Component {
   state = {
     textValue:'',
-    todos: [
-      {ticked: true, name: 'Wash dishes'},
-      {ticked: false, name: 'Walk dog'}
-    ]
-  }  
+    todos: [] // {id: string, ticked: boolean, name: string}
+  }
+  
+  componentDidmount = async () => {
+    console.log('xxxx')
+    const response = await fetch('http://localhost:3001/todos') 
+    //const API = 'http://localhost:3001/ ('${API}/todos')
+    const data = await response.json()
+      console.log(data.id + ' --- ' + data.name)    
+    this.setState({todos: data} )    
+    // try {
+    //   const response = await fetch(API) 
+    //   //const API = 'http://localhost:3001/ ('${API}/todos')
+    //   const data = await response.json()
+    //   this.setState({todos: data} )
+
+    //   console.log(response.status)
+    //   console.log(data.id + ' --- ' + data.name)
+    //   } 
+    // catch (err) {
+    //   console.log(err)
+    // } 
+  }
+
+  componentDidUpdate = () => {
+
+    
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return true
+  }
+
   handleValue = (e) => {
     this.setState({
         textValue: e.target.value
@@ -19,11 +49,29 @@ class TodoList extends React.Component {
     )
     console.log(this.state.textValue)
   }
-  handleAdd = () => {
-    const { name, todos, nextId } = this.state
+  handleAdd = async () => {
+    if (!this.state.textValue) {
+      alert('Please write something')
+      return
+    }
+
+    const todo = {ticked: false, name: this.state.textValue}
+    await fetch(API, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          name: this.state.textValue
+        })
+    })
+
+    //const data = await response.json()
+    //console.log(response)
+
+    /*
+    const { todos, nextId } = this.state
     this.setState({
       todos: todos.concat({id: nextId, name: this.state.textValue})
-    })
+    })*/
   }
   handleTick = idx => () => {
    this.setState( state => ({
@@ -61,3 +109,4 @@ class TodoList extends React.Component {
 
 
 export default TodoList
+
