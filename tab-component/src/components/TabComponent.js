@@ -17,7 +17,13 @@ export default class TabComponent extends React.Component{
             current: 0
         }
     }
-
+    
+    renderMenu() {
+        const current = this.state.current
+        return this.state.tabList.map((tab, idx) => {
+            return <div>{tab}&nbsp;&nbsp;</div>
+        })
+    }
 
     render() {
         const current = this.state.current
