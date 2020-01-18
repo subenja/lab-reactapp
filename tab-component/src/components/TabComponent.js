@@ -44,11 +44,11 @@ export default class TabComponent extends React.Component{
     render() {
         const current = this.state.current
         return(
-            <div> 
-                <div style={{display: 'flex', flexDirection: 'row', }}>
+            <div style={ {marginTop: '15px', marginLeft:'20px'}}> 
+                <div style={{display: 'flex', flexDirection: 'row', height:'30px'}}>
                     {this.renderMenu()}
                 </div>
-                <div style={{height: '276px'}}>
+                <div style={{height: '276px', borderStyle: 'Solid'}} >
                     {this.state.componentList[current]}
                 </div>
             </div>
