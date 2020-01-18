@@ -21,13 +21,23 @@ export default class TabComponent extends React.Component{
     renderMenu() {
         const current = this.state.current
         return this.state.tabList.map((tab, idx) => {
+            if (idx == current) {
+                return (
+                    <div style={{borderStyle: 'inset'}} 
+                        onClick={ () => { this.setState({current :idx}) } }
+                    >
+                        &nbsp;&nbsp;{tab}&nbsp;&nbsp;
+                    </div>
+                )
+            }
             return (
-                <div style={{borderStyle: 'inset'}} 
+                <div style={{borderStyle: 'outset'}} 
                     onClick={ () => { this.setState({current :idx}) } }
                 >
                     &nbsp;&nbsp;{tab}&nbsp;&nbsp;
                 </div>
-            )
+            )            
+
         })
     }
 
