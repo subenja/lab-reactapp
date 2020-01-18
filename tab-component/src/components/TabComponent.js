@@ -21,7 +21,13 @@ export default class TabComponent extends React.Component{
     renderMenu() {
         const current = this.state.current
         return this.state.tabList.map((tab, idx) => {
-            return <div>{tab}&nbsp;&nbsp;</div>
+            return (
+                <div style={{borderStyle: 'inset'}} 
+                    onClick={ () => { this.setState({current :idx}) } }
+                >
+                    &nbsp;&nbsp;{tab}&nbsp;&nbsp;
+                </div>
+            )
         })
     }
 
@@ -32,7 +38,7 @@ export default class TabComponent extends React.Component{
                 <div style={{display: 'flex', flexDirection: 'row', }}>
                     {this.renderMenu()}
                 </div>
-                <div>
+                <div style={{height: '276px'}}>
                     {this.state.componentList[current]}
                 </div>
             </div>
