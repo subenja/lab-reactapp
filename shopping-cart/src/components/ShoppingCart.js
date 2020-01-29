@@ -168,6 +168,7 @@ export class ShoppingCart extends Component {
 
     this.handleCategoryId = this.handleCategoryId.bind(this)
     this.handleClickAddToCart = this.handleClickAddToCart.bind(this)
+    this.handleClickRemoveFromCart = this.handleClickRemoveFromCart.bind(this)
   }
 
   handleCategoryId(id) {
@@ -190,6 +191,13 @@ export class ShoppingCart extends Component {
       })   
     }
 
+  }
+
+  handleClickRemoveFromCart(uid) {
+      this.setState ({
+          cart: this.state.cart.filter ( cartItem => cartItem.uid !== uid )
+      })
+   
   }
         //cart: this.state.cart.concat(product)
   filterProducts() {
@@ -219,7 +227,10 @@ export class ShoppingCart extends Component {
           />
         </Col>
         <Col span={6}>
-          <Cart cart = {this.state.cart} />
+          <Cart
+            cart = {this.state.cart}
+            handleClickRemoveFromCart={this.handleClickRemoveFromCart} 
+          />
         </Col>
       </Row>
     );

@@ -19,7 +19,9 @@ export class Cart extends Component {
       {
         title: 'Action',
         dataIndex: '',
-        render: (text, cartItem) => <Button>Delete</Button>
+        render: (text, cartItem) => 
+          <Button 
+            onClick={() => {this.props.handleClickRemoveFromCart(cartItem.uid)}}>Delete</Button>
       }
     ];
     return (
